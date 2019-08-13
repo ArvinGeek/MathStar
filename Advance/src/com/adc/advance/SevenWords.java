@@ -1,3 +1,14 @@
+/**********************************************************************************
+ * 
+ * 
+ * 
+ * 
+ *                            Word     解析器
+ *                            
+ * 
+ * 
+ * 
+ * *******************************************************************************/
 package com.adc.advance;
 import java.io.*;
 import java.util.Calendar; 
@@ -8,13 +19,12 @@ import java.text.SimpleDateFormat;
 
 public class SevenWords 
 {
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		// TODO Auto-generated method stub
 		System.out.println("Hello Java");
 		ReNameFile();
-		System.out.println("ReName Success ！ ");
-
-		
+		System.out.println("ReName Success ！ ");		
 	}
 	///File ReName
 	public static void ReNameFile() 
@@ -38,6 +48,9 @@ public class SevenWords
 	}
 	//转移文件夹
 	public static void SendToDir()
-	{}
+	{
+		
+		
+	}
 	 
 }

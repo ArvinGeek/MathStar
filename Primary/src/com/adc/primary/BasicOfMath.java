@@ -7,5 +7,4 @@ public class BasicOfMath {
 	{
 		return A+B;
 	}
-
 }

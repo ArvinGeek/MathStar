@@ -78,7 +78,7 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 				//				  } 
 				g.fillOval(55, 55, 40, 40); // g.draw
 				g.fillOval(55, 155, 40, 40); 
-
+				
 				g.fillOval(105, 105, 40, 40);
 				g.fillOval(155, 155, 40, 40);
 				g.fillOval(205, 205, 40, 40);

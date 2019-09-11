@@ -18,18 +18,14 @@ import com.adc.design.ArtDesignPanel;
 
 ///±´Èû¶ûÇúÏß
 
+///
 public class SevenGraphic {
-
+	
 	public static void main(String[] args) {
 		new DrawGraphic();
 	}
-
+	
 }
-
-
-
-
-
 
 
 //10X10·½¸ñ

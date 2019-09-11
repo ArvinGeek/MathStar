@@ -1,13 +1,13 @@
 /**********************************************************************************
- * 
- * 
- * 
- * 
- *                            Word     解析器
- *                            
- * 
- * 
- * 
+ *                                                                                * 
+ *                                                                                * 
+ *                                                                                * 
+ *                                                                                * 
+ *                            Word     解析器                                                                   * 
+ *                                                                                * 
+ *                                                                                * 
+ *                                                                                * 
+ *                                                                                * 
  * *******************************************************************************/
 package com.adc.advance;
 import java.io.*;
@@ -46,10 +46,10 @@ public class SevenWords
             f.renameTo(new File(dir.getAbsolutePath()+"\\"+RName+".mp3"));
         }
 	}
+	
 	//转移文件夹
 	public static void SendToDir()
-	{
-		
+	{		
 		
 	}
 	 

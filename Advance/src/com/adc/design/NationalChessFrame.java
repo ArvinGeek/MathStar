@@ -57,17 +57,14 @@ public class NationalChessFrame extends JFrame{
 		setSize(1000, 836);
 		this.setVisible(true);
 		Container p = getContentPane();
+		
 		//setBounds(510, 2, 1200, 1080);
+		
 		setVisible(true);
-		//p.setBackground(Color.ORANGE);
-		//setLayout(null);
-		//pack();
+
+
 		setResizable(false);
-		// this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setVisible(true);
 
 		try 
 		{

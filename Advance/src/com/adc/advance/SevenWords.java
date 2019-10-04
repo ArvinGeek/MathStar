@@ -22,9 +22,9 @@ public class SevenWords
 	public static void main(String[] args) 
 	{
 		// TODO Auto-generated method stub
-		System.out.println("Hello Java");
+		System.out.println(" Hello Java !");
 		ReNameFile();
-		System.out.println("ReName Success £¡ ");		
+		System.out.println(" ReName Success ! ");		
 	}
 	///File ReName
 	public static void ReNameFile() 

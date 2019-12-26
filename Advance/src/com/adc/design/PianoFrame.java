@@ -1,50 +1,39 @@
 package com.adc.design;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
+
 import javax.swing.JFrame;
-import sun.font.FontDesignMetrics;
 
 
-public class GoChessFrame extends JFrame {
-	GoChessPanel gcp=new GoChessPanel(); 
+
+public class PianoFrame  extends JFrame {
+	PianoPanel gcp=new PianoPanel(); 
 	// 构造方法
-	public GoChessFrame() {
+	public PianoFrame() {
 		// TODO Auto-generated constructor stub		
 		this.add(gcp);
 		this.addWindowListener(new WindowListener() {
 			@Override
-			public void windowOpened(WindowEvent arg0) 
-			{
+			public void windowOpened(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 			}
 			@Override
-			public void windowIconified(WindowEvent arg0) 
-			{
+			public void windowIconified(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 			}
 			@Override
-			public void windowDeiconified(WindowEvent arg0) 
-			{
+			public void windowDeiconified(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 			}
 			@Override
-			public void windowDeactivated(WindowEvent arg0) 
-			{
+			public void windowDeactivated(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 			}
 			@Override
-			public void windowClosing(WindowEvent arg0) 
-			{
+			public void windowClosing(WindowEvent arg0) {
 				// TODO Auto-generated method stub
 			}
 			@Override
@@ -60,20 +49,27 @@ public class GoChessFrame extends JFrame {
 		this.setVisible(true);
 		setBackground(Color.orange);
 		Container p = getContentPane();
-		setBounds(510, 2, 1000, 1000);
-		this.getGraphics().setColor(Color.orange);
-		this.getGraphics().fillRect(510, 2, 1000, 1000);;
+		setBounds(10, 50, 1900, 900);
+		//this.getGraphics().setColor(Color.orange);
+		//this.getGraphics().fillRect(50, 2, 1800, 300);;
 		setVisible(true);
 		setLayout(null);
 		setResizable(false);
 		
-		try {
+		try 
+		{
 			Thread.sleep(500);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) {
-		new GoChessFrame();
-	}
+
+	public static void main(String[] args) 
+	{ 
+		PianoFrame PF = new PianoFrame();
+	}	
+
+
 }

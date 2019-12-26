@@ -38,14 +38,32 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.TextArea;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
-import javax.swing.JPanel;
 
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
+
+/**
+ * @author yshic
+ *
+ */
 public class GoChessPanel extends JPanel implements MouseListener, ActionListener 
 {	
 	private static final int sx = 55; // 小方格宽度
@@ -58,6 +76,22 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 	private Button BtnModels = new Button("棋谱加载");
 	private Button BtnTakeUp = new Button("检查提子");
 	private Button BtnCheckWin = new Button("申请计目");
+	private Button BtnGoArea = new Button("形势分析");
+	private Button BtnCountResult = new Button("胜负计目");
+	
+	//
+	private int StepCount=0;
+	//定时器
+	//private Timer timerAutoGo = new Timer();
+	///private Edit TBContext =new 
+	//创建文本框
+	private TextField TFBCaption = new TextField(20);
+
+	//创建按钮
+	//Button bu = new Button("数据转移");
+	private JTextField JTFText = new JTextField(); 
+	        //创建文本域
+	private TextArea TAContext = new TextArea(20, 50);
 
 	///提子
     private Vector GoMans;
@@ -75,8 +109,19 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
     ///手数
     private int ChessNum=0,Csign=0;
     
+    private int ChessModelSign=0;
+    //围棋区域
+    private int[] block;
+    private int blockLength;
 	GoChessPanel() 
 	{
+		//		timerAutoGo.schedule(new TimerTask() {
+		//			public void run() {
+		//				// TODO Auto-generated method stub
+		//				//System.out.println("learn...");
+		//				timerAutoGo.cancel();
+		//					}
+		//			}, 3000);
 		setBackground(Color.orange);
 		setLayout(null);		
 		addMouseListener(this);
@@ -98,7 +143,16 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 		add(BtnCheckWin);
 		BtnCheckWin.setBounds(900, 280, 60, 26);
 		BtnCheckWin.addActionListener(this);
+		add(BtnGoArea);
+		BtnGoArea.setBounds(900, 320, 60, 26);
+		BtnGoArea.addActionListener(this);
+		add(BtnCountResult);
+		BtnCountResult.setBounds(900, 360, 60, 26);
+		BtnCountResult.addActionListener(this);
 
+		add(TAContext);
+		TAContext.setBounds(5, 800, 780, 350);
+		
 		ChessCE= new int[20][20];
 		GoMans = new Vector();		
 	}
@@ -172,25 +226,25 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 	        		    g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()), ((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 60);
 	        	}
 	        }
-//			for (int i = 0; i < 19 ; i++)
-//				for (int j = 0; j < 19; j++) 
-//			{
-//					if(ChessCE[i][j]==1)
-//					{
-//						g.setColor(Color.BLACK);					
-//						g.fillOval(i * 35 + 40, j * 35 + 40, 30, 30);
-//					}
-//					if(ChessCE[i][j]==2)
-//					{
-//						g.setColor(Color.WHITE);					
-//						g.fillOval(i * 35 + 40, j * 35 + 40, 30, 30);
-//					}
-//					if(ChessCE[i][j]<>0)
-//					{
-//						
-//						
-//					}
-			//}
+	        if (ChessModelSign==1) 
+	        {
+				for (int i = 0; i < 19 ; i++)
+					for (int j = 0; j < 19; j++) 
+				{
+						if(ChessCE[i][j]==1)
+						{
+							g.setColor(Color.BLACK);					
+							g.fillOval(i * 35 + 40, j * 35 + 40, 30, 30);
+						}
+						if(ChessCE[i][j]==2)
+						{
+							g.setColor(Color.WHITE);					
+							g.fillOval(i * 35 + 40, j * 35 + 40, 30, 30);
+						}
+						if(ChessCE[i][j]==0)
+						{}
+				}
+			}
 			int fontSize = 50;			
 			Font font = new Font("楷体", Font.BOLD, 28);
 			g.setFont(font);
@@ -232,15 +286,73 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 		        repaint();
 
 		 }
+		 else if(e.getActionCommand().equals("棋谱加载"))
+		 {
+			 ChessModelSign=1;
+			 DownChessSeven();
+			 //TQZChess();
+			 repaint();	
+			 //JFileChooser chooser = new JFileChooser();
+		     //FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+		     //chooser.setFileFilter(filter);
+		     //int returnVal = chooser.showOpenDialog(chooser);
+		     //if(returnVal == JFileChooser.APPROVE_OPTION) 
+		     {
+				/*
+				 * System.out.println("You chose to open this file: " +
+				 * chooser.getSelectedFile().getName());
+				 * clooser.getSelectedFile().getName()
+				 * 为点击的文件名
+				 */		     
+		     }
+		 }
 		 else if(e.getActionCommand().equals("显示手数"))
 		 {	
 			 Csign=1;
+			 TQZChess();
 			 repaint();
 		 }
-		 else
+		 else if(e.getActionCommand().equals("检查提子"))
+		 {	
+			 //Csign=1;
+			 ChessModelSign=1;
+			 TQZChess();
+			 repaint();
+		 }
+		 else if(e.getActionCommand().equals("形势分析"))
+		 {	
+			TAContext.appendText("形势分析");
+			//Csign=1;
+			//			 ChessModelSign=1;
+			//			 TQZChess();
+			//			 repaint();
+		 }
+		 else   if(e.getActionCommand().equals("胜负计目"))
+		 {
+			 
+		 }
+		 else 
 		 {
 			 Csign=0;
 		 }
+	}
+	//清理已经提子
+	private void CleanDeadChess()
+	{
+		
+	}
+	//////棋谱-1. 穿心角
+	private void DownChessSeven()
+	{
+		ChessCE[0][0]=2;
+		ChessCE[1][1]=2;
+		ChessCE[1][0]=1;
+		ChessCE[2][0]=1;
+		ChessCE[2][1]=1;
+		ChessCE[0][1]=1;
+		ChessCE[0][2]=1;
+		ChessCE[1][2]=1;
+		ChessCE[2][2]=1;
 	}
 	@Override
 	public void mouseClicked(MouseEvent arg0) 
@@ -263,6 +375,7 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 		// TODO Auto-generated method stub
 		if (e.getModifiers() == InputEvent.BUTTON1_MASK) 
 		{
+			StepCount+=1;
 			PX = (int) e.getX();
 			PY = (int) e.getY();
 			int a = (PX - 55) / 35, b = (PY -55) / 35;
@@ -271,6 +384,7 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 				if (ChessCE[a][b]!=0) return;
 				TurnMan=2;
 				ChessCE[a][b]=1;
+				System.out.println(a+"-"+b+"+1");
 				
 				GoMan gm= new GoMan();
 				gm.setHeng(a);
@@ -284,6 +398,7 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 				if (ChessCE[a][b]!=0) return;
 				TurnMan=1;
 				ChessCE[a][b]=2;
+				System.out.println(a+"-"+b+"+2");
 				GoMan gm= new GoMan();
 				gm.setHeng(a);
 				gm.setZhong(b);		
@@ -293,12 +408,176 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 				gm.setGoNum(ChessNum);
 				GoMans.addElement(gm);
 			}
+			AutoGoChess();
 			this.repaint();
 		}
+	}
+	//自动对弈
+	public void AutoGoChess() 
+	{
+		if (StepCount==1) 
+		{
+			if (ChessCE[3][3]!=0) return;
+			TurnMan=1;
+			ChessCE[3][3]=2;
+			System.out.println(3+"-"+3+"+2");
+			GoMan gm= new GoMan();
+			gm.setHeng(3);
+			gm.setZhong(3);		
+			gm.setColor(2);
+			gm.setDead(1);
+			ChessNum+=1;
+			gm.setGoNum(ChessNum);
+			GoMans.addElement(gm);
+		}
+		if (StepCount==2) 
+		{
+			if (ChessCE[15][3]!=0) return;
+			TurnMan=1;
+			ChessCE[15][3]=2;
+			System.out.println(15+"-"+3+"+2");
+			GoMan gm= new GoMan();
+			gm.setHeng(15);
+			gm.setZhong(3);		
+			gm.setColor(2);
+			gm.setDead(1);
+			ChessNum+=1;
+			gm.setGoNum(ChessNum);
+			GoMans.addElement(gm);
+		}
+		if (StepCount==3) 
+		{
+			if (ChessCE[3][15]!=0) return;
+			TurnMan=1;
+			ChessCE[3][15]=2;
+			System.out.println(3+"-"+15+"+2");
+			GoMan gm= new GoMan();
+			gm.setHeng(3);
+			gm.setZhong(15);		
+			gm.setColor(2);
+			gm.setDead(1);
+			ChessNum+=1;
+			gm.setGoNum(ChessNum);
+			GoMans.addElement(gm);
+		}
+		if (StepCount==4) 
+		{
+			if (ChessCE[15][15]!=0) return;
+			TurnMan=1;
+			ChessCE[15][15]=2;
+			System.out.println(15+"-"+15+"+2");
+			GoMan gm= new GoMan();
+			gm.setHeng(15);
+			gm.setZhong(15);		
+			gm.setColor(2);
+			gm.setDead(1);
+			ChessNum+=1;
+			gm.setGoNum(ChessNum);
+			GoMans.addElement(gm);
+		}
+
 	}
 	@Override
 	public void mouseReleased(MouseEvent arg0)
 	{		
 		// TODO Auto-generated method stub		
 	}
+	
+	///////////////////////////////////////////////////
+	public void TQZChess()
+	{
+		  for(int i = 0;i < 19; i++){
+		      for(int j = 0;j < 19; j++){
+		          if(ChessCE[i][j] == 0)  
+		             continue;
+		          else{
+		          	block = new int[361];
+		          	blockLength = 1;                   
+		             	block[0] = i*19 + j; 
+		             
+		              recursion(i,j); 
+		              
+		              if(hasQi()) 
+		              	continue;            
+		              else {
+		                  for(int t = 0;t < blockLength; t++)
+		                	  ChessCE[block[t]/19][block[t]%19] = 0; 
+		              }
+		          }
+		      }
+		  }
+	}
+
+    public void recursion(int i,int j)
+    {   
+    	//  //Left
+    	if(i-1 >= 0 && ChessCE[i-1][j] == ChessCE[i][j] && isInBlock((i-1)*19+j))
+    	{
+	      block[blockLength] = (i-1)*19 + j;
+	      blockLength ++;
+	      recursion(i-1,j);
+    	}
+    	//  //Up
+    	if(j-1 >= 0 && ChessCE[i][j-1] == ChessCE[i][j] && isInBlock(i*19+j-1))
+    	{
+	      block[blockLength] = i*19 + j-1;
+	      blockLength++;
+	      recursion(i,j-1);
+    	}
+    	//  //Right
+    	if(i+1 < 19 && ChessCE[i+1][j] == ChessCE[i][j] && isInBlock((i+1)*19+j))
+    	{
+		    block[blockLength] = (i+1)*19 + j;
+		    blockLength++;
+	      recursion(i+1,j);
+    	}
+    	// //Down
+    	if(j+1 < 19 && ChessCE[i][j+1] == ChessCE[i][j] && isInBlock(i*19+j+1)){
+	      block[blockLength] = i*19 + j+1;
+	      blockLength++;
+	      recursion(i,j+1);
+    	}
+	}
+
+	public boolean hasQi()
+	{
+		  int i,j;
+		  for(int t = 0;t < blockLength; t++){
+		      i = block[t]/19;
+		      j = block[t]%19;
+		      if(i-1 >= 0 && ChessCE[i-1][j] == 0) return true;
+		      if(i+1 < 19 && ChessCE[i+1][j] == 0) return true;
+		      if(j-1 >= 0 && ChessCE[i][j-1] == 0) return true;
+		      if(j+1 < 19 && ChessCE[i][j+1] == 0) return true;            
+		  }
+		  return false;
+	}
+
+	public boolean isInBlock(int neighbor)
+	{    
+		  for(int i = 0;i < blockLength; i++)
+		  {
+		      if (block[i] == neighbor) return false;
+		  }
+		  return true;
+	}
+	
+	
+	//形势分析
+	public void AllAreaAnalyze()
+	{		
+		
+	}
+	//形势分析-虚线链接法
+	public void LineEyesAnalyze()
+	{		
+		
+	}
+
+	//计算胜负目数
+	public void CalculateWinChessEye() 
+	{
+		
+	}
+
 }

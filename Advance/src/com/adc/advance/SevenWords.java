@@ -9,7 +9,9 @@
  *                                                                                * 
  *                                                                                * 
  * *******************************************************************************/
+
 package com.adc.advance;
+
 import java.io.*;
 import java.util.Calendar; 
 import java.util.Date; 
@@ -35,8 +37,10 @@ public class SevenWords
 		Date date = new Date(); 
 		//DateTime today = new DateTime(new Date());
 		//Date dt=new Date(new Date()).toDateTimeString(); 
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式  
-	     // System.out.println(df.format(new Date()));// new Date()为获取当前系统时间  
+		//设置日期格式  
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+	    // System.out.println(df.format(new Date())); 
+		// new Date()为获取当前系统时间  
 		long Count=0,intRName=new Long(df.format(date));
 		String RName="";
 		for (File f  : Flist) {
@@ -45,12 +49,10 @@ public class SevenWords
 			RName=String.valueOf(intRName);
             f.renameTo(new File(dir.getAbsolutePath()+"\\"+RName+".mp3"));
         }
-	}
-	
+	}	
 	//转移文件夹
 	public static void SendToDir()
 	{		
 		
-	}
-	 
+	}	 
 }

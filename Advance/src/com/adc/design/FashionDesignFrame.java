@@ -1,26 +1,18 @@
 package com.adc.design;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
+
 import javax.swing.JFrame;
-import sun.font.FontDesignMetrics;
 
-
-public class GoChessFrame extends JFrame {
-	GoChessPanel gcp=new GoChessPanel(); 
+public class FashionDesignFrame extends JFrame {
+	FashionDesignPanel fdp=new FashionDesignPanel(); 
 	// 构造方法
-	public GoChessFrame() {
+	public FashionDesignFrame() {
 		// TODO Auto-generated constructor stub		
-		this.add(gcp);
+		this.add(fdp);
 		this.addWindowListener(new WindowListener() {
 			@Override
 			public void windowOpened(WindowEvent arg0) 
@@ -73,7 +65,9 @@ public class GoChessFrame extends JFrame {
 			e.printStackTrace();
 		}
 	}
+
+	
 	public static void main(String[] args) {
-		new GoChessFrame();
+		new FashionDesignFrame();
 	}
 }

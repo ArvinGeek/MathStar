@@ -7,11 +7,11 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 
-public class NationalChessFrame extends JFrame{
+public class InternationalChessFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
-	NationalChessPanel ncp=new NationalChessPanel(); 
+	InternationalChessPanel ncp=new InternationalChessPanel(); 
 	// 构造方法
-	public NationalChessFrame() {
+	public InternationalChessFrame() {
 		// TODO Auto-generated constructor stub
 		
 		this.add(ncp);
@@ -76,7 +76,7 @@ public class NationalChessFrame extends JFrame{
 
 	}
 	public static void main(String[] args) {
-		new NationalChessFrame();
+		new InternationalChessFrame();
 	}
 
 }

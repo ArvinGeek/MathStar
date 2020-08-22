@@ -15,13 +15,16 @@ import javax.swing.JFrame;
 import sun.font.FontDesignMetrics;
 
 
-public class GoChessFrame extends JFrame {
+public class GoChessFrame extends JFrame 
+{
 	GoChessPanel gcp=new GoChessPanel(); 
 	// 构造方法
-	public GoChessFrame() {
+	public GoChessFrame() 
+	{
 		// TODO Auto-generated constructor stub		
 		this.add(gcp);
-		this.addWindowListener(new WindowListener() {
+		this.addWindowListener(new WindowListener() 
+		{
 			@Override
 			public void windowOpened(WindowEvent arg0) 
 			{
@@ -67,13 +70,17 @@ public class GoChessFrame extends JFrame {
 		setLayout(null);
 		setResizable(false);
 		
-		try {
+		try 
+		{
 			Thread.sleep(500);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		new GoChessFrame();
 	}
 }

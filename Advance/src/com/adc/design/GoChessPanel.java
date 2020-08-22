@@ -24,6 +24,8 @@
  * 4. 棋盘背景颜色
  * 5. 棋子的绘制效果
  * 
+ * 2020-02-24
+ * 1. 游戏胜算率
  * 
  * 
  * 
@@ -52,8 +54,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
@@ -64,6 +64,7 @@ import java.util.TimerTask;
  * @author yshic
  *
  */
+
 public class GoChessPanel extends JPanel implements MouseListener, ActionListener 
 {	
 	private static final int sx = 55; // 小方格宽度
@@ -181,51 +182,45 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 				// 	绘制第i条水平线
 				g.drawLine(sx, sy + (i * w), sx + rw, sy + (i * w));
 			}
-	        for (int i = 0; i < GoMans.size(); i++) {  
-				Font font = new Font("楷体", Font.PLAIN, 20);
-				g.setFont(font);
-
-	        	if (Csign==0)
-	        	{
-	        		if (((GoMan)GoMans.get(i)).getColor()==1) 
-	        		{
-	        			g.setColor(Color.BLACK);
-	        			g.fillOval(((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 40, 30, 30);
-	        			//g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()), ((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 40);
-	        		}
-	        		else
-	        		{
-	        			g.setColor(Color.WHITE);
-	        			g.fillOval(((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 40, 30, 30);
-	        			//g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()), ((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 40);
-	        			
-	        		}
-	        		
-	        	}
-	        	else 
-	        	{
-	        		if (((GoMan)GoMans.get(i)).getColor()==1) 
-	        		{
-	        			g.setColor(Color.BLACK);
-	        			g.fillOval(((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 40, 30, 30);
-	        			g.setColor(Color.WHITE);
-	        			//g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()), ((GoMan)GoMans.get(i)).getHeng() * 35 + 50, ((GoMan)GoMans.get(i)).getZong() * 35 + 60);
-	        		}
-	        		else
-	        		{
-	        			g.setColor(Color.WHITE);
-	        			g.fillOval(((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 40, 30, 30);
-	        			g.setColor(Color.BLACK);
-	        			//g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()), ((GoMan)GoMans.get(i)).getHeng() * 35 + 50, ((GoMan)GoMans.get(i)).getZong() * 35 + 60);       			
-	        		}
-	        		if (i<10)
-	        			g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()), ((GoMan)GoMans.get(i)).getHeng() * 35 + 50, ((GoMan)GoMans.get(i)).getZong() * 35 + 60);
-	        		else if (i<99)
-	        			g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()), ((GoMan)GoMans.get(i)).getHeng() * 35 + 45, ((GoMan)GoMans.get(i)).getZong() * 35 + 60);
-	        		else if (i<300)
-	        		    g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()), ((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 60);
-	        	}
-	        }
+			/*
+			 * for (int i = 0; i < GoMans.size(); i++) { Font font = new Font("楷体",
+			 * Font.PLAIN, 20); g.setFont(font);
+			 * 
+			 * if (Csign==0) { if (((GoMan)GoMans.get(i)).getColor()==1) {
+			 * g.setColor(Color.BLACK); g.fillOval(((GoMan)GoMans.get(i)).getHeng() * 35 +
+			 * 40, ((GoMan)GoMans.get(i)).getZong() * 35 + 40, 30, 30);
+			 * //g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()),
+			 * ((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong()
+			 * * 35 + 40); } else { g.setColor(Color.WHITE);
+			 * g.fillOval(((GoMan)GoMans.get(i)).getHeng() * 35 + 40,
+			 * ((GoMan)GoMans.get(i)).getZong() * 35 + 40, 30, 30);
+			 * //g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()),
+			 * ((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong()
+			 * * 35 + 40);
+			 * 
+			 * }
+			 * 
+			 * } else { if (((GoMan)GoMans.get(i)).getColor()==1) { g.setColor(Color.BLACK);
+			 * g.fillOval(((GoMan)GoMans.get(i)).getHeng() * 35 + 40,
+			 * ((GoMan)GoMans.get(i)).getZong() * 35 + 40, 30, 30); g.setColor(Color.WHITE);
+			 * //g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()),
+			 * ((GoMan)GoMans.get(i)).getHeng() * 35 + 50, ((GoMan)GoMans.get(i)).getZong()
+			 * * 35 + 60); } else { g.setColor(Color.WHITE);
+			 * g.fillOval(((GoMan)GoMans.get(i)).getHeng() * 35 + 40,
+			 * ((GoMan)GoMans.get(i)).getZong() * 35 + 40, 30, 30); g.setColor(Color.BLACK);
+			 * //g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()),
+			 * ((GoMan)GoMans.get(i)).getHeng() * 35 + 50, ((GoMan)GoMans.get(i)).getZong()
+			 * * 35 + 60); } if (i<10)
+			 * g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()),
+			 * ((GoMan)GoMans.get(i)).getHeng() * 35 + 50, ((GoMan)GoMans.get(i)).getZong()
+			 * * 35 + 60); else if (i<99)
+			 * g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()),
+			 * ((GoMan)GoMans.get(i)).getHeng() * 35 + 45, ((GoMan)GoMans.get(i)).getZong()
+			 * * 35 + 60); else if (i<300)
+			 * g.drawString(String.valueOf(((GoMan)GoMans.get(i)).getGoNum()),
+			 * ((GoMan)GoMans.get(i)).getHeng() * 35 + 40, ((GoMan)GoMans.get(i)).getZong()
+			 * * 35 + 60); } }
+			 */
 	        if (ChessModelSign==1) 
 	        {
 				for (int i = 0; i < 19 ; i++)
@@ -375,6 +370,7 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 		// TODO Auto-generated method stub
 		if (e.getModifiers() == InputEvent.BUTTON1_MASK) 
 		{
+			ChessModelSign=1;
 			StepCount+=1;
 			PX = (int) e.getX();
 			PY = (int) e.getY();
@@ -408,7 +404,7 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 				gm.setGoNum(ChessNum);
 				GoMans.addElement(gm);
 			}
-			AutoGoChess();
+			//AutoGoChess();
 			this.repaint();
 		}
 	}

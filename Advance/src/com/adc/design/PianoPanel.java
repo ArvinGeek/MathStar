@@ -34,6 +34,7 @@ public class PianoPanel extends JPanel implements MouseListener, ActionListener 
 	private int height = 500;
 	private Button BtnModels = new Button("曲谱演奏");
 	private Button BtnTakeUp = new Button("钢琴调音");
+	private Button BtnPlayPianoMusic = new Button("钢琴曲播放");
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -85,13 +86,29 @@ public class PianoPanel extends JPanel implements MouseListener, ActionListener 
 		add(BtnTakeUp);
 		BtnTakeUp.setBounds(900, 640, 60, 26);
 		BtnTakeUp.addActionListener(this);
+		add(BtnPlayPianoMusic);
+		BtnPlayPianoMusic.setBounds(900, 680, 80, 26);
+		BtnPlayPianoMusic.addActionListener(this);
+
 
 	}
 	public void actionPerformed(ActionEvent e) 
 	{
 		// TODO Auto-generated method stub
-		 if(e.getActionCommand().equals("人机对弈"))//是Red按钮事件
+		 if(e.getActionCommand().equals("钢琴曲播放"))//是Red按钮事件
 		 {			
+			    BtnPlayPianoMusic.setLabel("播放钢琴曲");
+				try 
+				{
+					play("G:\\MyInformation\\Study\\Music\\钢琴曲\\肖邦降B小调夜曲.wav");
+					return;
+				} 
+				catch (IOException e1) 
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			/*
 			 * ChessCE[2][2]=1; GoMans.addElement(ChessCE[2][2]); repaint();
 			 * 
@@ -103,6 +120,22 @@ public class PianoPanel extends JPanel implements MouseListener, ActionListener 
 //		        }
 //		        repaint();
 		 }
+		 if(e.getActionCommand().equals("播放钢琴曲"))//是Red按钮事件
+		 {			
+			    BtnPlayPianoMusic.setLabel("钢琴曲播放");
+			    try
+				{
+					play("G:\\MyInformation\\Study\\Music\\钢琴曲\\纯音乐 - 天空之城 (钢琴版)_Hight.wav");
+					return;
+				} 
+				catch (IOException e1) 
+				{
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+ 
+		 }
+		 
 	}
 	/** Reads the coordinates where on the panel mouse is pressed */
 	@Override
@@ -189,6 +222,8 @@ public class PianoPanel extends JPanel implements MouseListener, ActionListener 
 	{
 		inputStream = new FileInputStream(new File(file));
 		AudioPlayer.player.start(inputStream);
+		//AudioPlayer.player.stop(arg0);
+		
 	}
 	// 加载音频
 	public void LoadPkeyWave() {
@@ -246,7 +281,32 @@ public class PianoPanel extends JPanel implements MouseListener, ActionListener 
  * width / 52; rightX = rightX + width / 52; } }
  * 
  * 
+ * 下载下载
  * 
- * 
- * 
+ * 　1.莫扎特 《A大调第十一号钢琴奏鸣曲》
+
+　　2.贝多芬 《升C小调第十四号钢琴奏鸣曲“月光”》
+
+　　3.舒伯特 《音乐的瞬间第三首，F小调》
+
+　　4.舒曼 “梦幻曲”(《童年情景》之七)
+
+　　5.李斯特 《帕格尼尼大练习曲之三“钟”》
+
+　　6.勃拉姆斯 《升F小调第五号匈牙利舞曲》
+
+　　7.肖邦 《降B小调夜曲》
+
+　　8.肖邦 《C小调练习曲“革命”》
+
+
+世界著名的钢琴独奏曲
+
+　1.莫扎特 《A大调第十一号钢琴奏鸣曲》　　2.贝多芬 《升C小调第十四号钢琴奏鸣曲“月光”》　
+　3.舒伯特 《音乐的瞬间第三首，F小调》　　4.舒曼 “梦幻曲”(《童年情景》之七)　　
+  5.李斯特 《帕格尼尼大练习曲之三“钟”》　　6.勃拉姆斯 《升F小调第五号匈牙利舞曲》　　
+  7.肖邦 《降B小调夜曲》　　8.肖邦 《C小调练习曲“革命”》　　
+  9.德彪西 《亚麻色头发的少女》　　10.拉赫玛尼诺夫 《升C小调第二号前奏曲》
+
+
  ***************************************************/

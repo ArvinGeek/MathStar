@@ -11,10 +11,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.*;
+
 //import java.awt.image.*;
 import javax.swing.JPanel;
 
-public class InternationalCheckersChessPanel extends JPanel implements MouseListener, ActionListener  {
+public class InternationalCheckersChessPanel extends JPanel implements MouseListener, ActionListener  
+{	
 	
 	private Button BtnComputer = new Button("人机对弈");
 	private Button BtnInternetwork = new Button("网络对弈");
@@ -25,7 +27,8 @@ public class InternationalCheckersChessPanel extends JPanel implements MouseList
 	private Button BtnGoArea = new Button("形势分析");
 	private Button BtnCountResult = new Button("胜负计目");
 
-	InternationalCheckersChessPanel() {
+	InternationalCheckersChessPanel() 
+	{
 		setLayout(null);
 		//setBackground(Color.orange);
 		addMouseListener(this);
@@ -36,59 +39,55 @@ public class InternationalCheckersChessPanel extends JPanel implements MouseList
 		//		buttonA.setBounds(1080, 80, 60, 26);
 		//		buttonA.addActionListener(this);
 		add(BtnComputer);
-		BtnComputer.setBounds(1020, 80, 60, 26);
+		BtnComputer.setBounds(820, 80, 60, 26);
 		BtnComputer.addActionListener(this);
 		add(BtnInternetwork);
-		BtnInternetwork.setBounds(1020, 120, 60, 26);
+		BtnInternetwork.setBounds(820, 120, 60, 26);
 		BtnInternetwork.addActionListener(this);
 		add(BtnNumMan);
-		BtnNumMan.setBounds(1020, 160, 60, 26);
+		BtnNumMan.setBounds(820, 160, 60, 26);
 		BtnNumMan.addActionListener(this);
 		add(BtnModels);
-		BtnModels.setBounds(1020, 200, 60, 26);
+		BtnModels.setBounds(820, 200, 60, 26);
 		BtnModels.addActionListener(this);
 		add(BtnTakeUp);
-		BtnTakeUp.setBounds(1020, 240, 60, 26);
+		BtnTakeUp.setBounds(820, 240, 60, 26);
 		BtnTakeUp.addActionListener(this);
 		add(BtnCheckWin);
-		BtnCheckWin.setBounds(1020, 280, 60, 26);
+		BtnCheckWin.setBounds(820, 280, 60, 26);
 		BtnCheckWin.addActionListener(this);
 		add(BtnGoArea);
-		BtnGoArea.setBounds(1020, 320, 60, 26);
+		BtnGoArea.setBounds(820, 320, 60, 26);
 		BtnGoArea.addActionListener(this);
 		add(BtnCountResult);
-		BtnCountResult.setBounds(1020, 360, 60, 26);
+		BtnCountResult.setBounds(820, 360, 60, 26);
 		BtnCountResult.addActionListener(this);
-
-
 	}
-
-
+	
 	@Override
-	public void paint(Graphics gp) { // 重写paint方法
+	public void paint(Graphics gp) 
+	{ 
+		// 重写paint方法
         super.paint(gp);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if ((i + 1) % 2 != 0 && (j + 1) % 2 != 0)
-                	gp.drawRect(i * 100, j * 100, 100, 100);
+                	gp.drawRect(i * 75, j * 75, 75, 75);
                 else if ((i + 1) % 2 == 0 && (j + 1) % 2 == 0)
-                	gp.drawRect(i * 100, j * 100, 100, 100);
+                	gp.drawRect(i * 75, j * 75, 75, 75);
                 else
-                	gp.fillRect(i * 100, j * 100, 100, 100);
+                	gp.fillRect(i * 75, j * 75, 75, 75);
             }
-
-        }
-        
-        InitalitionChess(gp);
+        }        
+        //InitalitionChess(gp);
+        InitalitionChessMan(gp);
 	}
-
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		// TODO Auto-generated method stub		
 	}
-
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -96,13 +95,11 @@ public class InternationalCheckersChessPanel extends JPanel implements MouseList
 		
 	}
 
-
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseEntered(MouseEvent e) 
+	{
+		// TODO Auto-generated method stub		
 	}
-
 
 	@Override
 	public void mouseExited(MouseEvent e) {
@@ -110,19 +107,71 @@ public class InternationalCheckersChessPanel extends JPanel implements MouseList
 		
 	}
 
-
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent e) 
+	{
+		// TODO Auto-generated method stub		
 	}
 
-
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void mouseReleased(MouseEvent e) 
+	{
+		// TODO Auto-generated method stub		
 	}
+	
+	private void InitalitionChessMan(Graphics G)
+	{
+        for (int i = 0; i < 10; i++) 
+        {
+            for (int j = 0; j < 4; j++) 
+            {
+				/*
+				 * if ((i + 1) % 2 != 0 && (j + 1) % 2 != 0) { G.setColor(Color.RED);
+				 * G.fillOval((i+1) * 75 + 2, j * 75 + 2, 70, 70); }
+				 */
+            }
+        }     
+        
+        for (int i = 0; i < 10; i++) 
+        {
+            for (int j = 0; j < 4; j++) 
+            {	
+            	
+            	if ((i + 1) % 2 != 0 && (j + 1) % 2 != 0) 
+            	{
+	            	G.setColor(Color.RED);
+	            	G.fillOval((i + 1) * 75 + 2, j * 75 + 2, 70, 70); 
+            	}
+            	if ((i ) % 2 != 0 && (j) % 2 != 0) 
+            	{
+	            	G.setColor(Color.RED);
+	            	G.fillOval((i-1) * 75 + 2, j * 75 + 2, 70, 70); 
+            	}            	
+				/*
+				 * if ((i + 1) % 3 != 0 && (j + 1) % 3 != 0) { G.setColor(Color.RED);
+				 * G.fillOval((i) * 75 + 2, j * 75 + 2, 70, 70); }
+				 */
+            }
+            for (int j = 6; j < 10; j++) 
+            {	
+            	G.setColor(Color.ORANGE);
+            	if ((i + 1) % 2 != 0 && (j + 1) % 2 != 0) 
+            	{
+	            	
+	            	G.fillOval((i + 1) * 75 + 2, j * 75 + 2, 70, 70); 
+            	}
+            	if ((i ) % 2 != 0 && (j) % 2 != 0) 
+            	{
+	            	//G.setColor(Color.RED);
+	            	G.fillOval((i-1) * 75 + 2, j * 75 + 2, 70, 70); 
+            	}            	
+				/*
+				 * if ((i + 1) % 3 != 0 && (j + 1) % 3 != 0) { G.setColor(Color.RED);
+				 * G.fillOval((i) * 75 + 2, j * 75 + 2, 70, 70); }
+				 */
+            }
+        }
+	}	
 	
 	private void InitalitionChess(Graphics gp) 
 	{
@@ -191,5 +240,23 @@ public class InternationalCheckersChessPanel extends JPanel implements MouseList
 		 */	
 		}
 }
+
+
+
+
+
+/*
+ * 
+ * gp.drawRect(i * 75, j * 75, 75, 75);
+ * else if ((i + 1) % 2 == 0 && (j + 1) % 2 == 0)    
+ * gp.drawRect(i * 75, j * 75, 75, 75);    
+ * else    
+ * gp.fillRect(i * 75, j * 75, 75, 75);   
+ * G.fillArc(x, y, width, height, startAngle, arcAngle);
+ * (x, y, width, height);
+ * 
+ */
+
+ 
 
 

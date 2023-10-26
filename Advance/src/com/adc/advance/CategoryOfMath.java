@@ -11,5 +11,8 @@ public class CategoryOfMath {
 	 public static final String MathD = "离散数学";  
      //   
 	 public static final String MathE = "应用数学";  
+	 //
+	 public static final String MathF = "微积分";  
+
 
 }

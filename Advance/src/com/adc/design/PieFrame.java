@@ -1,19 +1,18 @@
 package com.adc.design;
-
 import java.awt.Container;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 
-public class ChinaChessFrame extends JFrame {
+public class PieFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-	ChinaChessPanel ncp=new ChinaChessPanel(); 
+	//ChinaChessPanel ncp=new ChinaChessPanel(); 
 	// 构造方法
-	public ChinaChessFrame() {
+	public PieFrame() {
 		// TODO Auto-generated constructor stub
 		
-		this.add(ncp);
+		//this.add(ncp);
 		this.addWindowListener(new WindowListener() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
@@ -43,7 +42,6 @@ public class ChinaChessFrame extends JFrame {
 			@Override
 			public void windowClosed(WindowEvent arg0) {
 				// TODO Auto-generated method stub
-				//System.exit(0);
 				System.exit(0);
 			}
 
@@ -52,7 +50,7 @@ public class ChinaChessFrame extends JFrame {
 				// TODO Auto-generated method stub
 			}
 		});
-		setTitle("中国象棋棋盘");
+		setTitle("饼图");
 		setLocation(400, 20);
 		setSize(1000, 836);
 		this.setVisible(true);
@@ -76,6 +74,7 @@ public class ChinaChessFrame extends JFrame {
 
 	}
 	public static void main(String[] args) {
-		new ChinaChessFrame();
+		new PieFrame();
 	}
 }
+

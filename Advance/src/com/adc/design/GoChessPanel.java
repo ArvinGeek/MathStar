@@ -406,6 +406,8 @@ public class GoChessPanel extends JPanel implements MouseListener, ActionListene
 			}
 			//AutoGoChess();
 			this.repaint();
+			TQZChess();
+			this.repaint();
 		}
 	}
 	//×Ô¶¯¶ÔÞÄ

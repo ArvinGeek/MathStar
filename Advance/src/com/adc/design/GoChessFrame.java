@@ -81,6 +81,8 @@ public class GoChessFrame extends JFrame
 	}
 	public static void main(String[] args) 
 	{
-		new GoChessFrame();
+		JFrame Jf=new GoChessFrame();
+		//Jf.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 	}
 }

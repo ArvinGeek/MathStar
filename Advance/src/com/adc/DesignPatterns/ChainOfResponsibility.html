@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var counter=0;
+function captureClick()
+{
+	document.captureEvents(Event.CLICK);
+	document.onclick=clickHandler;
+}
+function clickHandler()
+{
+	document.myForm.myText.value=counter++;	
+}
+function releaseClick()
+{
+	document.releaseEvents(Event.CLICK);
+	document.onclick="";
+}
+</script>
+</head>
+<body onclick="alert('document receives onclick event');">
+<form name="myForm" onclick="alert('myForm receives onclick event');">
+<input type=Text size=2 value="" value="" name="myText">
+<input type=Button value="Capture Event" onmousedown='captureClick()'>
+<input type=Button value="Release Event" onmousedown='releaseClick()'>
+<input type=button name=myButton value="Click Here" onclick="alert('myButton receives onclick event');">
+</form>
+</body>
+</html>
